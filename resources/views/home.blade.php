@@ -91,7 +91,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{Auth::user() -> name}}<b
                             class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('login')}}"> Log out </a></li>
+                        <li><a href="{{route('logout')}}"> Log out </a></li>
                     </ul>
                 </li>
             </ul>
