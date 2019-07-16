@@ -74,7 +74,6 @@
                 },
                 'type': 'POST',
                 success: function (data) {
-                    console.log(data);
                     if (data.error == true) {
                         $('.error').hide();
                         if (data.message.email != undefined) {
@@ -88,7 +87,7 @@
                         }
                     }
                     else {
-                        window.location.href = 'http://localhost/admin/home'
+                        window.location.href = 'http://localhost/admin/home/index'
                     }
                 }
             });

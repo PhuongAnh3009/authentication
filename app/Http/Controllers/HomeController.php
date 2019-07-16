@@ -10,6 +10,11 @@ class HomeController extends Controller
 //    public function _construct() {
 //        $this->middleware('auth', ['except' => 'getLogout']);
 //    }
+
+    public function index()
+    {
+        return view('admin.pages.home.index');
+    }
     public function getIndex() {
         return view('home');
     }
