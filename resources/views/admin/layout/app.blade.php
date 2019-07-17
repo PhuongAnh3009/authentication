@@ -16,10 +16,8 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="admin/assests/images/favicon.png"/>
     <script src="http://code.jquery.com/jquery.js"></script>
-    {{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">--}}
-    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>--}}
-    {{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>--}}
 </head>
+
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
@@ -62,4 +60,5 @@
 <script src="admin/assests/js/myjs.js"></script>
 <!-- End custom js for this page-->
 </body>
+
 </html>

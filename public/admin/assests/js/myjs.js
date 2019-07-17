@@ -7,30 +7,38 @@ $('#my-modal').on('shown.bs.modal', function (e) {
     else {
         $('#status_old').prop("checked", true)
     }
-    $('.update-button').click(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: 'admin/category/update/' + cat_id,
-            dataType: 'json',
-            data: {
-                'category_name': $('#cate_name').val(),
-                'category_status': $("input[name='status']").val(),
-                'id': cat_id
-            },
-            type: 'POST',
-            success: function (data) {
-                $('.title').text(data.category_name);
-                $('#status').val(data.category_status);
-                let cate_name = data.category_name
-                console.log(data)
-                let cate_status = data.category_status == 0 ? 'Not display' : 'Display'
-                $("#category_" + cat_id).remove()
-                let createNewTR = ` <tr id="category_${cat_id}">`
-                    + ` <td>1</td>
+    $('#input_id').val(cat_id)
+
+})
+
+$('.update-button').click(function (event) {
+    event.preventDefault();
+    let cat_id = $("#input_id").val()
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: 'admin/category/update/' + cat_id,
+        dataType: 'json',
+        data: {
+            'category_name': $('#cate_name').val(),
+            'category_status': $('.status').val(),
+            // 'category_status': $("input[name='status']").val(),
+            'id': cat_id
+        },
+        type: 'POST',
+        success: function (data) {
+            $('.title').text(data.category_name);
+            $('#status').val(data.category_status);
+            let cate_name = data.category_name
+            console.log(data)
+            let cate_status = data.category_status == 0 ? 'Not display' : 'Display'
+            $("#category_" + cat_id).parent().index();
+            $("#category_" + cat_id).remove()
+            let createNewTR = `<tr id="category_${cat_id}">`
+                + `<td>${cat_id}</td>
                         <td id="td_name">${cate_name}</td>
                         <td id="td_status">
                            ${cate_status}
@@ -45,11 +53,7 @@ $('#my-modal').on('shown.bs.modal', function (e) {
                         </td>
                     </tr>
                 `
-                $("#table-body").prepend(createNewTR)
-            }
-        });
+            $("#table-body").prepend(createNewTR)
+        }
     });
-})
-
-
-
+});

@@ -9,25 +9,25 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Category &raquo; List</h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered" id ="my-table">
                 @if(Session::has('message'))
                     <div class="alert alert-success">{{Session::get('message')}}</div>
                 @endif
                 <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>Name</th>
-                    <th>Status</th>
+                    <th> ID </th>
+                    <th> Name </th>
+                    <th> Status </th>
                     <th style="width: 130px;">Action</th>
                 </tr>
                 </thead>
                 <tbody id="table-body">
-                @foreach($category as $key => $category)
-                    <tr id="category_{{$category->id}}">
-                        <td>{{$key+1}}</td>
-                        <td id="td_name">{{$category->category_name}}</td>
+                @foreach($category as $cate)
+                    <tr id="category_{{$cate->id}}">
+                        <td>{{$cate -> id}}</td>
+                        <td id="td_name">{{$cate->category_name}}</td>
                         <td id="td_status">
-                            @if($category->category_status == 1)
+                            @if($cate->category_status == 1)
                                 Display
                             @else
                                 Not display
@@ -35,15 +35,16 @@
                         </td>
                         <td id="td_edit">
                             <button class="btn btn-success btn-icon" data-toggle="modal" data-target="#my-modal"
-                                    data-name="{{$category->category_name}}"
-                                    data-id="{{$category->id}}"
-                                    data-status="{{$category->category_status}}">Edit
+                                    data-name="{{$cate->category_name}}"
+                                    data-id="{{$cate->id}}"
+                                    data-status="{{$cate->category_status}}">Edit
                             </button>
-                            <button class="btn btn-danger btn-icon delete-button" data-id="{{$category->id}}"> Delete
+                            <button class="btn btn-danger btn-icon delete-button" data-id="{{$cate->id}}"> Del
                             </button>
                         </td>
                     </tr>
                 @endforeach
+                <div class="row">{!! $category->links() !!}</div>
                 </tbody>
             </table>
         </div>
@@ -56,7 +57,9 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
+
                         <div class="form-group">
+                            <input type="hidden" id="input_id">
                             <div class="form-group">
                                 <label> Name </label>
                                 <input class="form-control" id="cate_name" name="description" placeholder="Input name"/>
@@ -64,10 +67,10 @@
                             <div class="form-group">
                                 <label> Status </label> <br>
                                 <label class="radio-inline">
-                                    <input id="status_new" name="status" type="radio" value="1"> Display
+                                    <input id="status_new" name="status" type="radio" value="1" class="status"> Display
                                 </label>
                                 <label class="radio-inline">
-                                    <input id="status_old" name="status" type="radio" value="0"> Not display
+                                    <input id="status_old" name="status" type="radio" value="0"class="status"> Not display
                                 </label>
                             </div>
                         </div>
@@ -98,7 +101,8 @@
                 },
                 'type': 'GET',
                 success: function (data) {
-                    $('#category_' + id).remove();
+                    // $('#category_' + id).remove();
+                    $("tr:nth-child(1)").find("td:last-child").parent().remove()
                 }
             });
         })

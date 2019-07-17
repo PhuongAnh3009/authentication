@@ -18,11 +18,11 @@
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                     <div class="nav-profile-img">
-                        <img src="admin/assests//images/faces/face1.jpg" alt="image">
+                        <img src="admin/assests//images/faces/face28.jpg" alt="image">
                         <span class="availability-status online"></span>
                     </div>
                     <div class="nav-profile-text">
-                        <p class="mb-1 text-black">David Greymaax</p>
+                        <p class="mb-1 text-black"> Panpan </p>
                     </div>
                 </a>
                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">

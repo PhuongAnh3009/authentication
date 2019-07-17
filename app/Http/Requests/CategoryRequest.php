@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Validator;
 
 class CategoryRequest extends FormRequest
 {
@@ -15,7 +16,6 @@ class CategoryRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,22 +24,24 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-          'category_name' => 'required|min:3|max:20|unique:categories,category_name'
+            'category_name' => 'required|min:3|max:20|unique:categories,category_name'
         ];
     }
+
     public function messages()
     {
         return [
-            'required' => ':attribute khong duoc de trong',
-            'min' => ':attribute phai tu 3-20 ky tu',
-            'max' => ':attribute phai tu 3-20 ky tu',
-            'unique' => ':attribute da duoc su dung',
+            'required' => ':attribute must be fill',
+            'min' => ':attribute at least 3 character',
+            'max' => ':attribute max is 20 character',
+            'unique' => ':attribute used before',
         ];
     }
+
     public function attributes()
     {
         return [
-            'category_name' => 'Category ten'
+            'category_name' => 'Category'
         ];
     }
 }

@@ -15,11 +15,14 @@ class HomeController extends Controller
     {
         return view('admin.pages.home.index');
     }
-    public function getIndex() {
+
+    public function getIndex()
+    {
         return view('home');
     }
 
-    public function getLogout(){
+    public function getLogout()
+    {
         Auth::logout();
 //        return redirect()->route('login');
         return redirect(\URL::previous());
