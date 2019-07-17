@@ -27,19 +27,19 @@ class CategoryController extends Controller
      */
     public function create()
     {
-       return view('admin.pages.category.add');
+        return view('admin.pages.category.add');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CategoryRequest $request)
     {
         $data = $request->all();
-        if(Category::create($data)){
+        if (Category::create($data)) {
             return redirect('admin/category/add')->with('message', 'Success add new category !');
         }
     }
@@ -47,7 +47,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param \App\Category $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -58,7 +58,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,30 +70,31 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
         $data = $request->all();
-        if ($category->update($data)){
-            return redirect('admin/category/list')->with('message', 'Success edit category with id '.$id);
+        $updateCategory = $category->update($data);
+        if ($updateCategory) {
+            return response()->json($data);
         }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $category = Category::find($id);
-        if ($category->delete()){
-            return redirect('admin/category/list')->with('message', 'Success delete category with id '.$id);
+        if ($category->delete()) {
+            return redirect('admin/category/list')->with('message', 'Success delete category with id ' . $id);
         }
     }
 }
